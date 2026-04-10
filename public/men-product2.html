@@ -59,7 +59,10 @@
 <script>
 // CART COUNT
 const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-document.getElementById("cartCount").textContent = cartItems.length;
+const cartCount = document.getElementById("cartCount");
+if (cartCount) {
+  cartCount.textContent = cartItems.length;
+}
 
 // SIDEBAR
 function openSidebar() {
@@ -84,6 +87,10 @@ function addToCart() {
   });
 
   localStorage.setItem("cart", JSON.stringify(cart));
+
+  // ✅ FIX
+  document.getElementById("cartCount").textContent = cart.length;
+
   alert("Added to cart");
 }
 </script>

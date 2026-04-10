@@ -182,15 +182,19 @@
       }
     }
 
-    document.body.innerHTML = `
-      <div class="success-box">
-        <div class="tick">✔</div>
-        <h2>Your Order is Placed</h2>
-        <p>Thanks for choosing <b>Fashion Hub</b></p>
-      </div>
-    `;
+    const orderId = "FH" + Date.now();
 
+    const orderData = {
+      orderId: orderId,
+      items: cart,
+      status: "Order Placed",
+      paymentMethod: selectedMethod
+    };
+
+    localStorage.setItem("currentOrder", JSON.stringify(orderData));
     localStorage.removeItem("cart");
+
+    window.location.href = "thankyou.html";
   }
 
   updateCartCount();
